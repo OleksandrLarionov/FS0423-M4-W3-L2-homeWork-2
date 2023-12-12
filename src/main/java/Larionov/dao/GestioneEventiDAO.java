@@ -23,12 +23,12 @@ public class GestioneEventiDAO {
 
         System.out.println("Evento" + evento.getTitolo() + "è stato salvato con successo");
     };
-    public GestioneEventi findById(long id){
+    public GestioneEventi getById(long id){
         GestioneEventi found = em.find(GestioneEventi.class, id);
         return found;
     };
-    public void deleteByIdAndDelete(long id){
-        GestioneEventi found = this.findById(id);
+    public void findByIdAndDelete(long id){
+        GestioneEventi found = this.getById(id);
 
         if (found != null){
             EntityTransaction transaction = em.getTransaction();
