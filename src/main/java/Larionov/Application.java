@@ -20,6 +20,7 @@ public class Application {
         GestioneEventiDAO sd = new GestioneEventiDAO(em);
         Faker faker = new Faker();
 
+//        *****************************SUPPLIERS******************************
         Supplier<LocalDate> dateSupplier = () -> {
             Random rdm = new Random();
             int randomYear = rdm.nextInt(2000,2024);
@@ -28,10 +29,26 @@ public class Application {
             return LocalDate.of(randomYear, randomMonth,randomDay);
         };
 
-        Supplier<GestioneEventi> nuovoEventoSupplier = () -> new GestioneEventi(faker.name().title(), dateSupplier.get(), faker.gameOfThrones().city(), TipoEvento.PRIVATO, 2);
+        Supplier<Integer> pplInvitationSupplier = () -> {
+            Random rndm = new Random();
+            int ppl = rndm.nextInt(1, 150);
+            return  ppl;
+        };
+
+        Supplier<TipoEvento> supplierEventoRndm = () -> {
+            Random rndm = new Random();
+            int numRandom = rndm.nextInt(1,3);
+            if (numRandom == 1) {
+                return TipoEvento.PRIVATO;
+            } else {
+                return TipoEvento.PUBBLICO;
+            }
+        };
+
+        Supplier<GestioneEventi> nuovoEventoSupplier = () -> new GestioneEventi(faker.name().title(), dateSupplier.get(), faker.gameOfThrones().city(), supplierEventoRndm.get(), pplInvitationSupplier.get());
 
 //        ********************CREAZIONE EVENTI****************
-//        for (int i = 0; i < 5; i++){
+//        for (int i = 0; i < 7; i++){
 //            sd.save(nuovoEventoSupplier.get());
 //        }
 //
