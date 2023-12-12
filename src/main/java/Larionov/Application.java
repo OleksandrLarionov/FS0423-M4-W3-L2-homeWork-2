@@ -17,7 +17,7 @@ public class Application {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("FS0423-M4-W3-L2-homeWork-2");
     public static void main(String[] args) {
         EntityManager em = emf.createEntityManager();
-        GestioneEventiDAO sd = new GestioneEventiDAO(em);
+        GestioneEventiDAO ged = new GestioneEventiDAO(em);
         Faker faker = new Faker();
 
 //        *****************************SUPPLIERS******************************
@@ -48,8 +48,9 @@ public class Application {
         Supplier<GestioneEventi> nuovoEventoSupplier = () -> new GestioneEventi(faker.name().title(), dateSupplier.get(), faker.gameOfThrones().city(), supplierEventoRndm.get(), pplInvitationSupplier.get());
 
 //        ********************CREAZIONE EVENTI****************
-//        for (int i = 0; i < 7; i++){
-//            sd.save(nuovoEventoSupplier.get());
+
+//        for (int i = 0; i < 70; i++){
+//            ged.save(nuovoEventoSupplier.get());
 //        }
 //
         GestioneEventi eventoUno = new GestioneEventi("Compleanno", LocalDate.of(2023,2,4), "Una BIG festa Di Compleanno" , TipoEvento.PRIVATO, 200);
@@ -83,13 +84,13 @@ public class Application {
 //        List<GestioneEventi> listaEventi = sd.getAllEvents();
 //        listaEventi.forEach(System.out::println);
 
-        List<GestioneEventi> listaEventiTry2 = sd.getAllEvents();
+        List<GestioneEventi> listaEventiTry2 = ged.getAllEvents();
         listaEventiTry2.forEach(System.out::println);
 
 //        ********************DELETE EVENT****************
         System.out.println("********************EVENTI CANCELLATI********************");
 
-        sd.findByIdAndDelete(3);
+        ged.findByIdAndDelete(3);
 
         em.close();
         emf.close();
