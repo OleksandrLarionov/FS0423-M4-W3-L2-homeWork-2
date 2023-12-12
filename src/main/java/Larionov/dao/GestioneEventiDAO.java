@@ -21,7 +21,7 @@ public class GestioneEventiDAO {
 
         transazione.commit();
 
-        System.out.println("Studente" + evento.getTitolo() + "è stato salvato con successo");
+        System.out.println("Evento" + evento.getTitolo() + "è stato salvato con successo");
     };
     public GestioneEventi findById(long id){
         GestioneEventi found = em.find(GestioneEventi.class, id);
@@ -39,10 +39,10 @@ public class GestioneEventiDAO {
 
             transaction.commit();
 
-            System.out.println("Studente ");
+            System.out.println("Evento cancellato");
 
         } else {
-            System.out.println("Studente non trovato");
+            System.out.println("Evento non trovato");
         }
 
     };
