@@ -3,20 +3,38 @@ package Larionov;
 import Larionov.dao.GestioneEventiDAO;
 import Larionov.entities.GestioneEventi;
 import Larionov.entities.TipoEvento;
+import com.github.javafaker.Faker;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Random;
+import java.util.function.Supplier;
 
 public class Application {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("FS0423-M4-W3-L2-homeWork-2");
     public static void main(String[] args) {
         EntityManager em = emf.createEntityManager();
         GestioneEventiDAO sd = new GestioneEventiDAO(em);
+        Faker faker = new Faker();
+
+        Supplier<LocalDate> dateSupplier = () -> {
+            Random rdm = new Random();
+            int randomYear = rdm.nextInt(2000,2024);
+            int randomDay = rdm.nextInt(1,30);
+            int randomMonth = rdm.nextInt(1,12);
+            return LocalDate.of(randomYear, randomMonth,randomDay);
+        };
+
+        Supplier<GestioneEventi> nuovoEventoSupplier = () -> new GestioneEventi(faker.name().title(), dateSupplier.get(), faker.gameOfThrones().city(), TipoEvento.PRIVATO, 2);
 
 //        ********************CREAZIONE EVENTI****************
+//        for (int i = 0; i < 5; i++){
+//            sd.save(nuovoEventoSupplier.get());
+//        }
+//
         GestioneEventi eventoUno = new GestioneEventi("Compleanno", LocalDate.of(2023,2,4), "Una BIG festa Di Compleanno" , TipoEvento.PRIVATO, 200);
         GestioneEventi eventoDue = new GestioneEventi("Piscina", LocalDate.of(2023,1,25), "Una festa in piscina" , TipoEvento.PUBBLICO, 200);
         GestioneEventi eventoTre = new GestioneEventi("Lavoro", LocalDate.of(2023,5,5), "Festa nuovo incarico" , TipoEvento.PRIVATO, 200);
