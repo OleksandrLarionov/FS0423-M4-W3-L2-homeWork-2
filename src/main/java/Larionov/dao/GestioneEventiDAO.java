@@ -4,6 +4,7 @@ import Larionov.entities.GestioneEventi;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import java.util.List;
 
 public class GestioneEventiDAO {
     private final EntityManager em;
@@ -46,4 +47,8 @@ public class GestioneEventiDAO {
         }
 
     };
+    public List<GestioneEventi> getAllEvents() {
+        List<GestioneEventi> listaEventi = em.createQuery("SELECT e FROM GestioneEventi e", GestioneEventi.class).getResultList();
+        return listaEventi;
+    }
 }

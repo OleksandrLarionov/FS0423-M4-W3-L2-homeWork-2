@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.time.LocalDate;
+import java.util.List;
 
 public class Application {
     private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("FS0423-M4-W3-L2-homeWork-2");
@@ -34,15 +35,25 @@ public class Application {
 
 //        ********************FIND EVENT****************
 
-        for (int i = 1 ; i < 6; i++) {
-            GestioneEventi eventoFromDb = sd.getById(i);
-            if (eventoFromDb != null) {
-                System.out.println(eventoFromDb);
-            } else {
-                System.out.println("L'eventoFromDb con id: " + i + " non è presente o è stato rimosso");
-            }
-        }
+//        for (int i = 1 ; i < 6; i++) {
+//            GestioneEventi eventoFromDb = sd.getById(i);
+//            if (eventoFromDb != null) {
+//                System.out.println(eventoFromDb);
+//            } else {
+//                System.out.println("L'eventoFromDb con id: " + i + " non è presente o è stato rimosso");
+//            }
+//        }
+        System.out.println("********************LISTA EVENTI********************");
+
+//        List<GestioneEventi> listaEventi = sd.getAllEvents();
+//        listaEventi.forEach(System.out::println);
+
+        List<GestioneEventi> listaEventiTry2 = sd.getAllEvents();
+        listaEventiTry2.forEach(System.out::println);
+
 //        ********************DELETE EVENT****************
+        System.out.println("********************EVENTI CANCELLATI********************");
+
         sd.findByIdAndDelete(3);
 
         em.close();
