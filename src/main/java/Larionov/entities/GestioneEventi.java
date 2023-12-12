@@ -1,6 +1,7 @@
 package Larionov.entities;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 @Entity
 @Table(name = "gestioneeventi")
@@ -11,7 +12,7 @@ public class GestioneEventi {
     @Column(name = "titolo")
     private String titolo;
     @Column(name = "dataevento")
-    private Date dataEvento;
+    private LocalDate dataEvento;
     @Column(name = "descrizione")
     private String descrizione;
     @Column(name = "tipoevento")
@@ -21,7 +22,7 @@ public class GestioneEventi {
     private int numeroMassimoPartecipanti;
 
     public GestioneEventi () {};
-    public GestioneEventi(String titolo, Date dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti) {
+    public GestioneEventi(String titolo, LocalDate dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti) {
         this.titolo = titolo;
         this.dataEvento = dataEvento;
         this.descrizione = descrizione;
@@ -37,7 +38,7 @@ public class GestioneEventi {
         return titolo;
     }
 
-    public Date getDataEvento() {
+    public LocalDate getDataEvento() {
         return dataEvento;
     }
 
@@ -57,7 +58,7 @@ public class GestioneEventi {
         this.titolo = titolo;
     }
 
-    public void setDataEvento(Date dataEvento) {
+    public void setDataEvento(LocalDate dataEvento) {
         this.dataEvento = dataEvento;
     }
 
