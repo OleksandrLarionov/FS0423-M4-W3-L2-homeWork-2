@@ -81,11 +81,9 @@ public class Application {
 //        }
         System.out.println("********************LISTA EVENTI********************");
 
-//        List<GestioneEventi> listaEventi = sd.getAllEvents();
-//        listaEventi.forEach(System.out::println);
+        List<GestioneEventi> listaEventi = ged.getAllEvents();
+        listaEventi.forEach(System.out::println);
 
-        List<GestioneEventi> listaEventiTry2 = ged.getAllEvents();
-        listaEventiTry2.forEach(System.out::println);
 
 //        ********************DELETE EVENT****************
         System.out.println("********************EVENTI CANCELLATI********************");
